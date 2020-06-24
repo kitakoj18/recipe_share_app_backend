@@ -1,0 +1,3 @@
+Express.js REST API backend for the [recipe share app](https://github.com/kitakoj18/recipe_share_app).
+
+Implements user authentication with bcryptjs and json web tokens to protect routes when a user is not logged in. Stores user uploaded images in static folder, and saves user data (name, username, hashed pw, array of posts belonging to the user) and post data (recipe title, details, etc., creator) in MongoDB with the help of Mongoose. 
