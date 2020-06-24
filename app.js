@@ -62,6 +62,12 @@ app.use((req, res, next) =>{
 
 app.use('/posts', postsRoutes);
 
+app.use((error, req, res, next) =>{
+    const status = error.statusCode || 500;
+    const errorMsg = error.message;
+    res.status(status).json({message: errorMsg})
+})
+
 mongoose.connect(
     'mongodb+srv://kojikit:' + mongoPW + '@cluster0-sz1ci.mongodb.net/recipe_posts?retryWrites=true&w=majority'
 ).then(result=>{
