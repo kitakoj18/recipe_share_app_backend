@@ -8,10 +8,10 @@ exports.signup = (req, res, next) =>{
 
     // get any validation errors that were collected in validation process in routes auth.js
     const errors = validationResult(req);
-    console.log(errors.array());
+    // console.log(errors.array());
     if(!errors.isEmpty()){
-        // const errorMsg = errors.msg
-        const error = new Error('Validation failed');
+        const errorMsg = errors.array()[0].msg
+        const error = new Error(errorMsg);
         error.statusCode = 422;
         throw error;
     }
@@ -61,4 +61,8 @@ exports.signup = (req, res, next) =>{
             }
             next(err);
         });
+}
+
+exports.login = (req, res, next) =>{
+
 }
