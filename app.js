@@ -11,6 +11,8 @@ const dotenv = require('dotenv').config();
 const mongoPW = process.env.MONGO_PW;
 
 const postsRoutes = require('./routes/posts');
+const authRoutes = require('./routes/auth');
+
 const User = require('./models/user');
 
 const fileStorage = multer.diskStorage({
@@ -61,6 +63,8 @@ app.use((req, res, next) =>{
 });
 
 app.use('/posts', postsRoutes);
+
+app.use('/auth', authRoutes);
 
 app.use((error, req, res, next) =>{
     const status = error.statusCode || 500;
