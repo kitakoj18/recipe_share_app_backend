@@ -69,7 +69,7 @@ app.use('/auth', authRoutes);
 app.use((error, req, res, next) =>{
     const status = error.statusCode || 500;
     const errorMsg = error.message;
-    res.status(status).json({message: errorMsg})
+    res.status(status).json({errorMsg: errorMsg})
 })
 
 mongoose.connect(

@@ -21,9 +21,7 @@ router.post('/login', [
         .isEmail()
         .withMessage('Not a valid email. Please enter again.')
         .normalizeEmail(),
-        body('password').trim().isLength({min: 5}),
-        body('name').trim().not().isEmpty(),
-        body('userName').trim().not().isEmpty()
+        body('password').trim().isLength({min: 5})
 ],
     authController.login)
 
