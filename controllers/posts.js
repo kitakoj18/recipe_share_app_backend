@@ -54,7 +54,9 @@ exports.createPost = (req, res, next) =>{
     const cookTime = parseInt(req.body.cookTime);
     const ingredients = req.body.ingredients;
     const instructions = req.body.instructions;
-    const creator = req.user;
+    //userId is assigned in loggedIn.js
+    //this is a string but Mongoose will convert to id type itself
+    const creator = req.userId;
     const imageUrl = req.file.path;
 
     // console.log(req.file)
