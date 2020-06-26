@@ -76,7 +76,7 @@ exports.login = (req, res, next) =>{
 
     const email = req.body.email;
     const pw = req.body.password;
-    let loadedUser;
+    let signedInUser;
 
     User.findOne({email: email})
         .then(user =>{
@@ -97,7 +97,7 @@ exports.login = (req, res, next) =>{
             }
             // create token 
             const token = jwt.sign({email: signedInUser.email, userId: signedInUser._id.toString()}, jwtSecret, {expiresIn: '1h'});
-            res.status(200).json({token: token, userId: loadedUser._id.toString()});
+            res.status(200).json({token: token, userId: signedInUser._id.toString()});
         })
         .catch(err =>{
             if(!err.statusCode){
