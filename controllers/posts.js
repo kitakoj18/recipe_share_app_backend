@@ -75,7 +75,7 @@ exports.createPost = (req, res, next) =>{
     post.save()
         // add post to user who created it
         .then(result =>{
-            return User.findById('5ee95722063cd38e55f47f93');
+            return User.findById(req.userId);
         })
         .then(user =>{
             user.posts.push(post);
