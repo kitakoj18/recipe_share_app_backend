@@ -46,15 +46,6 @@ app.use(
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) =>{
-    User.findById('5ee95722063cd38e55f47f93')
-    .then(user =>{
-        req.user = user;
-        next();
-    })
-    .catch(err => console.log(err))
-})
-
-app.use((req, res, next) =>{
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -75,21 +66,6 @@ app.use((error, req, res, next) =>{
 mongoose.connect(
     'mongodb+srv://kojikit:' + mongoPW + '@cluster0-sz1ci.mongodb.net/recipe_posts?retryWrites=true&w=majority'
 ).then(result=>{
-
-    User.findOne()
-        .then(user =>{
-            if(!user){
-                const user = new User({
-                    name: 'Koji',
-                    email: 'koji@gmail.com',
-                    password: 'pw',
-                    userName: 'kitakoj',
-                    posts: []
-                })
-
-                user.save();
-            }
-        })
 
     app.listen(8080);
 })
