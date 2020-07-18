@@ -97,7 +97,15 @@ exports.login = (req, res, next) =>{
             }
             // create token 
             const token = jwt.sign({email: signedInUser.email, userId: signedInUser._id.toString()}, jwtSecret, {expiresIn: '1h'});
-            res.status(200).json({token: token, userId: signedInUser._id.toString()});
+            // create string of 1H (in MS) to provide to front end
+            const hrInMS = 1000*60*60
+            const expirationTime = hrInMS.toString();
+
+            res.status(200).json({
+                token: token, 
+                userId: signedInUser._id.toString(),
+                expiresIn: expirationTime
+            });
         })
         .catch(err =>{
             if(!err.statusCode){
